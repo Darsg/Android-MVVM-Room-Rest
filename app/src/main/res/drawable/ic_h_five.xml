@@ -1,0 +1,17 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:autoMirrored="true" android:height="24dp" android:tint="@color/color_rich_edit_icon" android:viewportHeight="24" android:viewportWidth="24" android:width="24dp">
+    <group>
+        <!-- 'H' Path -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M2,4 L2,20 L5,20 L5,13 L10,13 L10,20 L13,20 L13,4 L10,4 L10,11 L5,11 L5,4z" />
+
+        <!-- '5' Path -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M22,4 L14,4, L14,13, L20,13 L20,17 L14,17 L14,20 L22,20 L22,10 L16,10 L16,7 L22,7" />
+
+        <path
+            android:fillColor="@color/black"
+            android:pathData="M2,2 L20,22 L22,22 L4,2"/>
+    </group>
+</vector>
