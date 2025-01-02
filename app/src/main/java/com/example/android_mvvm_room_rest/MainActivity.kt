@@ -25,25 +25,31 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Initializing Views
         recyclerView = findViewById(R.id.recyclerview)
         faButton = findViewById(R.id.faButton)
+
+        // Setup RecyclerView
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.itemAnimator = DefaultItemAnimator()
 
+        // Assign ViewModel
         actorViewModal = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
+        // Call the network request from ViewModel
+        actorViewModal.fetchDataFromAPI()
+
+        // Set Adapter in RecyclerView
         actorList = mutableListOf()
         actorAdapter = ItemAdapter(this, actorList)
 
+        // Observing data ... Chill, we will get it from viewModel
         actorViewModal.getAllItems().observe(this) { actors ->
             recyclerView.adapter = actorAdapter
             actorAdapter.getAllItems(actors)
-            Log.d("main", "onChanged: $actors")
+            Log.e("main", "list in mainActivity $actors")
         }
-
-        // Call the network request from ViewModel
-        actorViewModal.networkRequest()
 
         faButton.setOnClickListener {
             // TODO Do something here for delete all record else insert record

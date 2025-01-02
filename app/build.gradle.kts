@@ -1,12 +1,14 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    id("org.jetbrains.kotlin.android") version "1.9.0"
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.example.android_mvvm_room_rest"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.android_mvvm_room_rest"
@@ -28,17 +30,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
 dependencies {
-
-//    implementation project(":are")
 
     // Core Android libraries
     implementation(libs.androidx.core.ktx)
@@ -55,8 +55,7 @@ dependencies {
     // Room for local database
     implementation(libs.androidx.room.runtime)  // Room runtime library
     implementation(libs.androidx.room.ktx)  // Room Kotlin extensions
-//    ksp(libs.androidx.room.compiler.v250)  // Annotation processing for Room
-    ksp(libs.androidx.room.compiler.v261)
+    ksp(libs.androidx.room.compiler)  // Annotation processing for Room
 
     // Coroutines for async programming
     implementation(libs.kotlinx.coroutines.android)
@@ -72,12 +71,17 @@ dependencies {
     // Coroutine
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-    
+
     //RichEditor
     implementation(libs.richeditor.android)
 
     //Color picker
     implementation(libs.ambilwarna)
 
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)  // Use kapt for Hilt instead of annotationProcessor
 
+    // Use for print Log of every request and response of API
+    implementation(libs.logging.interceptor)
 }

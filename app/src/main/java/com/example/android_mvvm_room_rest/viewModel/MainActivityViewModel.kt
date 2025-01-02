@@ -25,7 +25,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     }
 
     // Network request moved to ViewModel
-    fun networkRequest() {
+    fun fetchDataFromAPI() {
         val retrofit = Retrofit()
         val call = retrofit.api.getProductList()
 
@@ -34,7 +34,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
                 if (response.isSuccessful) {
                     response.body()?.let {
                         insert(it)
-                        Log.d("ViewModel", "onResponse: ${response.body()}")
+                        Log.e("ViewModel", "onResponse: ${response.body()}")
                     }
                 } else {
                     Log.e("ViewModel", "Error response: ${response.errorBody()}")
